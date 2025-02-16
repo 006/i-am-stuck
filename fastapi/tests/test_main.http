@@ -1,0 +1,22 @@
+# Test your FastAPI endpoints
+
+
+GET http://127.0.0.1:8000/
+Accept: application/json
+
+###
+
+GET http://127.0.0.1:8000/spot/056BBBB776434660B2A875ECA289DE15
+Accept: application/json
+
+###
+#POST 127.0.0.1:8000/spot/ECF33406590B45B1A7C4287F523B31C4/report
+#Accept:application/json
+#Content-Type: application/json
+#
+#{
+#  "bites": 1,
+#  "bph": 5,
+#  "cph": 2,
+#  "datime_last": "2025-01-19 22:18:10"
+#}

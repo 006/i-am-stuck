@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: onme
+  name: stuck-fastapi
+  labels:
+    app: stuck-fastapi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: stuck-fastapi
+  template:
+    metadata:
+      labels:
+        app: stuck-fastapi
+    spec:
+      containers:
+        - image: registry.tsst.xyz:5000/onme/stuck-fastapi:0.1.0
+          imagePullPolicy: Always
+          name: stuck-fastapi
+          ports:
+            - containerPort: 8000
+              protocol: TCP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: stuck-fastapi
+  namespace: onme
+spec:
+  type: LoadBalancer
+  selector:
+    app: stuck-fastapi
+  ports:
+    - name: stuck-8000
+      protocol: TCP
+      port: 8000
+      targetPort: 8000

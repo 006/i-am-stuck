@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+}
+
+.material-icons.md-48 {
+  font-size: 48px;
+}
+.material-icons.green600 {
+  color: #9b5278;
+}
+
+/* button {
+  border: #9b5278;
+  border-width: 1px;
+  border-style: solid;
+} */

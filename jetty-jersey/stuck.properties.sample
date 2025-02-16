@@ -1,0 +1,19 @@
+#Redis
+redis.host=192.168.6.88
+redis.port=6379
+redis.passwd=xxx
+redis.db=2
+
+#MariaDB
+db.nobites=test
+db.nobites.host=192.168.6.88
+db.nobites.port=3306
+db.nobites.user=xxx
+db.nobites.passwd=xxx
+
+#Auth0
+AUTH0_DOMAIN='change to your auth0 domain'
+
+#TalkJS
+TALKJS_APP_ID=
+TALKJS_APP_SECRET=

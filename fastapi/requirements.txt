@@ -1,0 +1,13 @@
+fastapi[standard]
+uvicorn
+pydantic-settings
+mariadb
+sqlmodel
+sqlalchemy
+jproperties
+pyjwt
+typing
+pytest
+httpx
+python-multipart
+cryptography

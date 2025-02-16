@@ -1,0 +1,6 @@
+.idea
+.venv
+dist
+__pycache__
+stuck.properties
+*.egg-info
