@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: onme
+  name: stuck-nextjs
+  labels:
+    app: stuck-nextjs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: stuck-nextjs
+  template:
+    metadata:
+      labels:
+        app: stuck-nextjs
+    spec:
+      containers:
+        - image: registry.tsst.xyz:5000/onme/stuck-nextjs:0.1.0
+          imagePullPolicy: Always
+          name: stuck-nextjs
+          ports:
+            - containerPort: 3000
+              protocol: TCP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: stuck-nextjs
+  namespace: onme
+spec:
+  type: LoadBalancer
+  selector:
+    app: stuck-nextjs
+  ports:
+    - name: stuck-3000
+      protocol: TCP
+      port: 80
+      targetPort: 3000
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: stuck-nextjs
+  namespace: onme
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: stuck.tsst.xyz
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: http
+                port:
+                  number: 80
+
