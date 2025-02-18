@@ -6,9 +6,10 @@ import { SessionData } from "@auth0/nextjs-auth0/types";
 import Geo from './geo';
 import { getStatusIcon, getStatusText } from "@/lib/miscellaneous";
 import env from "@beam-australia/react-env";
+import { Spot } from "@/lib/types";
 
 
-export default function Overlay({ spot, changeIsShown, session }: { spot: any, changeIsShown: boolean, session: SessionData }) {
+export default function Overlay({ spot, changeIsShown, session }: { spot: Spot, changeIsShown: (spot: Spot) => void, session: SessionData }) {
     const router = useRouter();
     const joinConversation = useCallback(async () => {
         if (!session)

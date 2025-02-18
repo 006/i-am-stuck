@@ -5,6 +5,7 @@ import { GoogleMap, useJsApiLoader, MarkerF, OverlayViewF, OVERLAY_MOUSE_TARGET 
 import env from "@beam-australia/react-env";
 import Overlay from '@/components/map-overlay';
 import { getStatusIcon } from "@/lib/miscellaneous";
+import { Spot } from '@/lib/types';
 
 const containerStyle = {
   width: "100%",
@@ -30,7 +31,7 @@ function MyComponent({ session }) {
 
   const [isShown, setIsShown] = useState(false)
 
-  const changeIsShown = useCallback((spot: any) => {
+  const changeIsShown = useCallback((spot: Spot) => {
     setCurrentSpot(spot)
     setIsShown(!isShown)
   }, [isShown])
