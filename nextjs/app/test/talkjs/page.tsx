@@ -33,7 +33,7 @@ function TalkJSChat() {
     return conversation;
   }, []);
 
-  console.log(env("TALKJS_APP_ID"))
+  // console.log(env("TALKJS_APP_ID"))
   return (
     <Session appId={env("TALKJS_APP_ID")} syncUser={syncUser}>
       <Chatbox syncConversation={syncConversation}
