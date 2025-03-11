@@ -47,3 +47,5 @@ docker run -p 8000:8000 -d [your.private.registry]:5000/[zzz]/stuck-gin:0.1.0
  ```bash
  kubectl create -f stuck-gin.yaml
  ```
+
+ ![k8s](../assets/k8s_pods.png)

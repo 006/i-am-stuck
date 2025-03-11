@@ -39,11 +39,6 @@ docker run -p 3000:3000 registry.tsst.xyz:5000/onme/stuck-nextjs:0.1.0
 kubectl create -f ./k8s/stuck-nextjs.yaml
 ```
 
-## Learn More
+### Explose by Ingress
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+![k8s](../assets/k8s_ingress.png)

@@ -17,7 +17,7 @@ zzz/
 ├── stuck.properties
 ```
 
-##  Dockerize
+## Dockerize
 
 ### Perform a [maven build](#build-a-jar-with-maven) first
 
@@ -31,12 +31,12 @@ docker build -t [your.private.registry]:5000/[zzz]/stuck-jetty-jersey:0.1.0 .
 docker images
 
 docker run -p 8000:8000 [your.private.registry]:5000/[zzz]/stuck-jetty-jersey:0.1.0
-
 ```
 
 ### Push to private docker registry for K8S use
 
  ```bash
+ #Push to private docker registry for K8S use
  docker push [your.private.registry]:5000/[zzz]/stuck-jetty-jersey:0.1.0
  ```
 
@@ -45,3 +45,5 @@ docker run -p 8000:8000 [your.private.registry]:5000/[zzz]/stuck-jetty-jersey:0.
  ```bash
  kubectl create -f stuck-jetty-jersey.yaml
  ```
+
+![k8s](../assets/k8s_pods.png)
