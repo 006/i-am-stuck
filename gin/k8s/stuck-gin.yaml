@@ -2,24 +2,27 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   namespace: onme
-  name: stuck-jetty-jersey
+  name: stuck-gin
   labels:
-    app: stuck-jersey
+    app: stuck-gin
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      app: stuck-jersey
+      app: stuck-gin
   template:
     metadata:
       labels:
-        app: stuck-jersey
+        app: stuck-gin
         tier: backend
     spec:
       containers:
-        - image: registry.tsst.xyz:5000/onme/stuck-jetty-jersey:0.1.0
+        - env:
+            - name: GIN_MODE
+              value: release
+          image: registry.tsst.xyz:5000/onme/stuck-gin:0.1.0
           imagePullPolicy: Always
-          name: stuck-jersey
+          name: stuck-gin
           ports:
             - containerPort: 8000
               protocol: TCP
@@ -28,12 +31,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: stuck-jersey
+  name: stuck-gin
   namespace: onme
 spec:
   type: LoadBalancer
   selector:
-    app: stuck-jersey
+    app: stuck-gin
   ports:
     - name: stuck-8000
       protocol: TCP

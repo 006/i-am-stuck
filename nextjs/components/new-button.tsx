@@ -24,12 +24,14 @@ export default function NewButton({ session }) {
     };
 
     /**
-      * localhost:8080 for Jetty-Jersy (Java) Restful API
+      * localhost:8000 for Jetty-Jersy (Java) Restful API
       * localhost:8000 for FastAPI (Python) Restful API
+      * localhost:8000 for Gin (Golang) Restful API
+      * .env/REACT_APP_MIXED_URL=>Mixed service load balance to all above 3 implements
       */
     const handleFormSubmit = (formData) => {
         console.log("Form Data Submitted:", formData);
-        fetch(env("FASTAPI_URL") + "/spot", {
+        fetch(env("MIXED_URL") + "/spot", {
             mode: 'cors',
             method: 'POST',
             headers: {

@@ -1,0 +1,17 @@
+---
+# DO NOT DO THIS (unless you have a very specific reason)
+# Create a service backed by APIs implemented by Java, Python and Go
+apiVersion: v1
+kind: Service
+metadata:
+  name: stuck-mixed-service
+  namespace: onme
+spec:
+  type: LoadBalancer
+  selector:
+    tier: backend
+  ports:
+    - name: stuck-mixed-8000
+      protocol: TCP
+      port: 8000
+      targetPort: 8000

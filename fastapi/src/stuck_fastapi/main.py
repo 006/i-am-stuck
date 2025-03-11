@@ -113,7 +113,7 @@ def get_spot(spot_unid: str, session: SessionDep) -> Dict[str, Any]:
     if not spot:
         raise HTTPException(status_code=404, detail="Spot not found")
     # return spot
-    return {"unid": spot.unid, "lon": spot.lon, "lat": spot.lat, "openid_stucker": spot.open_id_stucker,
+    return {"maker":"fastapi", "unid": spot.unid, "lon": spot.lon, "lat": spot.lat, "openid_stucker": spot.open_id_stucker,
             "openid_saver": spot.open_id_saver, "geohash": spot.geo_hash, "phone": spot.cellphone,
             "conversation_id": spot.id_cvsn, "vehicle_color": spot.color_vehicle}
 

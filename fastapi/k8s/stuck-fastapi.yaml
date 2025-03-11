@@ -14,6 +14,7 @@ spec:
     metadata:
       labels:
         app: stuck-fastapi
+        tier: backend
     spec:
       containers:
         - image: registry.tsst.xyz:5000/onme/stuck-fastapi:0.1.0

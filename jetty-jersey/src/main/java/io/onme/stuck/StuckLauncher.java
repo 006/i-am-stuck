@@ -63,7 +63,7 @@ public class StuckLauncher
 		ServerConnector connector = new ServerConnector( server );
 
 		// The port to listen to.
-		connector.setPort( 8080 );
+		connector.setPort( 8000 );
 		// The address to bind to.
 		connector.setHost( "0.0.0.0" );
 

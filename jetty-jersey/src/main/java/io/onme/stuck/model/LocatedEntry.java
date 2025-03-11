@@ -32,6 +32,9 @@ public class LocatedEntry implements StuckConstants
 
 	@XmlAttribute(name = KEY_LONGITUDE)
 	private double longitude;
+	
+	@XmlAttribute(name = "maker")
+	private String maker="jetty-jersey";
 
 	/**
 	 * @return the altitude
@@ -107,5 +110,4 @@ public class LocatedEntry implements StuckConstants
 	{
 		this.longitude = longitude;
 	}
-
 }

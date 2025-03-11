@@ -14,6 +14,7 @@ spec:
     metadata:
       labels:
         app: stuck-nextjs
+        tier: frontend
     spec:
       containers:
         - image: registry.tsst.xyz:5000/onme/stuck-nextjs:0.1.0

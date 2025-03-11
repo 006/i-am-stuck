@@ -63,8 +63,8 @@ public class SpotResource extends StuckResource
 		try (Connection connection = LocalCache.DATASOURCE.getConnection())
 		{
 			StringBuilder select = new StringBuilder();
-			select.append( "insert into SK_SPOT(UNID,OPEN_ID_STUCKER,LON,LAT,COLOR_VEHICLE" );
-			select.append( ",GEO_HASH,CELLPHONE,DATIME_LAST,CONTENT) values(?,?,?,?,?,?,?,?,?)" );
+			select.append( "insert into SK_SPOT(UNID,MAKER,OPEN_ID_STUCKER,LON,LAT,COLOR_VEHICLE" );
+			select.append( ",GEO_HASH,CELLPHONE,DATIME_LAST,CONTENT) values(?,'jetty-jersey',?,?,?,?,?,?,?,?)" );
 			PreparedStatement pstmt = connection.prepareStatement( select.toString(), Statement.RETURN_GENERATED_KEYS );
 			pstmt.setString( 1, unid );
 			pstmt.setString( 2, openId );
