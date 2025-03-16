@@ -104,7 +104,7 @@ export default function Overlay({ spot, changeIsShown, session }: { spot: Spot, 
             </button>
             <h1 className="text-lg text-center">{spot.name}</h1>
             <Geo lon={spot.lon} lat={spot.lat} />
-            <div className="flex-grow border-t border-gray-400" />
+            <div className="grow border-t border-gray-400" />
             <div className="flex flex-row">
                 <div className="content-center">
                     <Image src={getStatusIcon(spot.state)} alt="status" width="48" height="48" />
@@ -116,7 +116,7 @@ export default function Overlay({ spot, changeIsShown, session }: { spot: Spot, 
             <div>
                 <p className="text-base">Phone: {formatPhoneNumber(spot.phone)}</p>
             </div>
-            <div className="flex-grow border-t border-gray-400" />
+            <div className="grow border-t border-gray-400" />
             <div className="flex items-center my-1">
                 <span className="material-icons">update</span>
                 <span className="text-sm">&nbsp;{format(spot.epoch_last)}&nbsp;by&nbsp;</span>

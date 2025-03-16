@@ -37,7 +37,7 @@ export default function NewStuckForm({ myPosition, handleFormSubmit, handleClose
                             <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" htmlFor="vehicle-color">Vehicle Color</label>
                         </div>
                         <div className="md:w-2/3">
-                            <input className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-700"
+                            <input className="bg-gray-200 appearance-none border-2 border-gray-200 rounded-xs w-full py-2 px-4 text-gray-700 leading-tight focus:outline-hidden focus:bg-white focus:border-blue-700"
                                 id="vehicle-color" name="vehicle_color" type="text" placeholder="Black" value={formData.vehicle_color} onChange={handleChange} />
                         </div>
                     </div>
@@ -46,7 +46,7 @@ export default function NewStuckForm({ myPosition, handleFormSubmit, handleClose
                             <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" htmlFor="phone-number">Phone</label>
                         </div>
                         <div className="md:w-2/3">
-                            <input className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-700"
+                            <input className="bg-gray-200 appearance-none border-2 border-gray-200 rounded-xs w-full py-2 px-4 text-gray-700 leading-tight focus:outline-hidden focus:bg-white focus:border-blue-700"
                                 id="phone-number" name="phone" type="text" placeholder="123-123-1234" value={formData.phone} onChange={handleChange} />
                         </div>
                     </div>
@@ -55,7 +55,7 @@ export default function NewStuckForm({ myPosition, handleFormSubmit, handleClose
                             <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" htmlFor="description">Description</label>
                         </div>
                         <div className="md:w-2/3">
-                            <textarea className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-700"
+                            <textarea className="bg-gray-200 appearance-none border-2 border-gray-200 rounded-xs w-full py-2 px-4 text-gray-700 leading-tight focus:outline-hidden focus:bg-white focus:border-blue-700"
                                 id="description" name="description" placeholder="Black F150 stuck on crack" value={formData.description} onChange={handleChange} />
                         </div>
                     </div>
