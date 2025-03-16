@@ -26,23 +26,23 @@
 - Requests the user's current position using WGS84 coordinates.
 - Provides a form for submitting essential information about the incident.
 - Converts decimal WGS84 coordinates into Geohash for easy sharing via text or voice.
-  <img src="assets/m-report.png" alt="report" width="200px" />
+<img src="assets/m-report.png" alt="report" width="200px" />
 
 ### Browse cases on Google Maps
 
 - Displays reported incidents on a map using different icons to indicate the status (e.g., stuck, in talk, saved).
-  <img src="assets/m-browse.png" alt="browse" width="200px" /><img src="assets/m-engage.png" alt="engage" width="200px" />
+<img src="assets/m-browse.png" alt="browse" width="200px" /><img src="assets/m-engage.png" alt="engage" width="200px" />
 
 ### Private Chat
 
 - Facilitates direct communication between the stuck individual and rescuers via a private chat using the TalkJS SDK and RESTful API, protecting personal information.
-  <img src="assets/m-chat.png" alt="chat" width="200px" />
+<img src="assets/m-chat.png" alt="chat" width="200px" />
 
 ### Authentication and Authorization
 
 - Secure user authentication and authorization using Auth0.
 - Implements JWT (JSON Web Token) based access token generation and verification for secure API access.
-  <img src="assets/auth0.png" alt="auth0" width="200px" />
+<img src="assets/auth0.png" alt="auth0" width="200px" />
 
 ## Technologies Used
 
