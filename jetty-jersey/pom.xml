@@ -20,7 +20,7 @@
 		<tomcat.version>10.0.0</tomcat.version>
 		<mariadb.version>3.4.1</mariadb.version>
 		<jedis.version>5.1.5</jedis.version>
-		<json.version>20240303-57</json.version>
+		<json.version>20240303</json.version>
 		<hk2.version>2.5.0-b61</hk2.version>
 		<jersey.version>3.1.10</jersey.version>
 		<jetty.version>11.0.20</jetty.version>
