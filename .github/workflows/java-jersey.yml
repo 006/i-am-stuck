@@ -1,6 +1,3 @@
-# This workflow will build a package using Maven and then publish it to GitHub packages when a release is created
-# For more information see: https://github.com/actions/setup-java/blob/main/docs/advanced-usage.md#apache-maven-with-a-settings-path
-
 name: Maven Package
 
 on:
@@ -47,16 +44,13 @@ jobs:
           settings-path: ${{ github.workspace }}
           cache: maven
           
-      # - name: Login to GitHub Packages
-      #   run: echo "${{ secrets.PACKAGE_TOKEN }}" | docker login maven.pkg.github.com -u ttron --password-stdin
-
       - name: Build with Maven
         run: mvn -B package --file pom.xml
         env:
           MAVEN_USERNAME: ttron
           MAVEN_CENTRAL_TOKEN: ${{ secrets.PACKAGE_TOKEN }}
 
-      - name: Publish to GitHub Packages Apache Maven
+      - name: Publish to GitHub Packages
         run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml
         env:
           GITHUB_TOKEN: ${{ secrets.PACKAGE_TOKEN }}
