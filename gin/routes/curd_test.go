@@ -10,7 +10,8 @@ func TestGetSpot(t *testing.T) {
 	err := godotenv.Load("../.env") // load .env file from parent directory.
 
 	if err != nil {
-		t.Fatalf("Error loading .env file")
+		t.Logf("Error loading .env file")
+		t.Skip("No .env found. Skip test")
 	}
 
 	spot, err := GetSpot("E352724AFBC24B72B581D172E09B2CCD")
