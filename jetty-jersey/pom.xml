@@ -7,19 +7,12 @@
 	<packaging>jar</packaging>
 	<repositories>
 		<repository>
-			<releases>
-				<enabled>true</enabled>
-				<updatePolicy>always</updatePolicy>
-				<checksumPolicy>warn</checksumPolicy>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-				<updatePolicy>never</updatePolicy>
-				<checksumPolicy>warn</checksumPolicy>
-			</snapshots>
 			<id>github</id>
 			<name>GitHub OWNER Apache Maven Package</name>
 			<url>https://maven.pkg.github.com/006/i-am-stuck</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
 		</repository>
 	</repositories>
 	<distributionManagement>
@@ -28,6 +21,11 @@
 			<name>GitHub OWNER Apache Maven Packages</name>
 			<url>https://maven.pkg.github.com/006/i-am-stuck</url>
 		</repository>
+		<snapshotRepository>
+			<id>github</id>
+			<name>GitHub OWNER Apache Maven Snapshots</name>
+			<url>https://maven.pkg.github.com/006/i-am-stuck</url>
+		</snapshotRepository>
 	</distributionManagement>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
