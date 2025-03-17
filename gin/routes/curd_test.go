@@ -17,5 +17,5 @@ func TestGetSpot(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Error query spot:%s\n", err)
 	}
-	t.Fatalf("%d, %s, %s, %t\n", spot.AIID, spot.UNID, spot.Cellphone, spot.OpenIdSaver.Valid)
+	t.Logf("%d, %s, %s, %t\n", spot.AIID, spot.UNID, spot.Cellphone, spot.OpenIdSaver.Valid)
 }

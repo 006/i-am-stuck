@@ -1,0 +1,21 @@
+name: Go Unit Tests
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./gin
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Get dependencies
+        run: go mod download
+
+      - name: Test
+        run: go test -v -covermode=count -coverprofile=coverage.out ./...
