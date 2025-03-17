@@ -15,17 +15,13 @@ jobs:
         working-directory: ./jetty-jersey
     permissions:
       contents: read
-      packages: read|write
+      packages: write
 
     steps:
       - uses: actions/checkout@v4
 
       - name: debug
         run: echo ${{ secrets.MAVEN_PACKAGE_USER }} | sed 's/./& /g'
-
-      # - name: Enter Java Folder
-      #   run: |
-      #     cd jetty-jersey
 
       # - uses: actions/cache@v2
       #   with:
@@ -39,8 +35,8 @@ jobs:
           java-version: "17"
           distribution: "temurin"
           server-id: github
-          server-username: MAVEN_USERNAME # env variable for username in deploy
-          server-password: MAVEN_CENTRAL_TOKEN # env variable for token in deploy
+          server-username: MAVEN_USERNAME
+          server-password: MAVEN_CENTRAL_TOKEN
           settings-path: ${{ github.workspace }}
           cache: maven
           
