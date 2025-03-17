@@ -40,8 +40,8 @@ jobs:
           distribution: "temurin"
           cache: maven
           server-id: github
-          # server-username: ttron
-          # server-password: ${{ github.token }}
+          server-username: ttron
+          server-password: ${{ secrets.PACKAGE_SECRET }}
           settings-path: ${{ github.workspace }}
 
       - name: Build with Maven
