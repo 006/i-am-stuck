@@ -20,8 +20,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: debug
-        run: echo ${{ secrets.MAVEN_PACKAGE_USER }} | sed 's/./& /g'
+      # - name: debug
+        # run: echo ${{ secrets.MAVEN_PACKAGE_USER }} | sed 's/./& /g'
 
       # - uses: actions/cache@v2
       #   with:
