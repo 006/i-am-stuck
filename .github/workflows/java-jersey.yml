@@ -46,10 +46,13 @@ jobs:
           # server-username: ttron
           # server-password: ${{ secrets.PACKAGE_SECRET }}
           settings-path: ${{ github.workspace }}
+          
+      - name: Login to GitHub Packages
+        run: echo "${{ secrets.PACKAGE_SECRET }}" | docker login maven.pkg.github.com -u ${{ github.actor }} --password-stdin
 
       - name: Build with Maven
-        # run: mvn -B package --file pom.xml
-        run: mvn help:effective-settings -DshowPasswords=true
+        run: mvn -B package --file pom.xml
+        # run: mvn help:effective-settings -DshowPasswords=true
 
       - name: Publish to GitHub Packages Apache Maven
         run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml
