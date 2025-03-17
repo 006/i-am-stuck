@@ -48,7 +48,7 @@ jobs:
           settings-path: ${{ github.workspace }}
           
       - name: Login to GitHub Packages
-        run: echo "${{ secrets.PACKAGE_SECRET }}" | docker login maven.pkg.github.com -u ${{ github.actor }} --password-stdin
+        run: echo "${{ secrets.PACKAGE_SECRET }}" | docker login maven.pkg.github.com -u ttron --password-stdin
 
       - name: Build with Maven
         run: mvn -B package --file pom.xml
