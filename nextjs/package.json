@@ -13,7 +13,7 @@
     "@beam-australia/react-env": "^3.1.1",
     "@react-google-maps/api": "^2.20.5",
     "@talkjs/react": "^0.1.11",
-    "next": "^15.2.2",
+    "next": "^15.3.0-canary.16",
     "nextjs": "^0.0.3",
     "ngeohash": "^0.6.3",
     "react": "^19.0.0",

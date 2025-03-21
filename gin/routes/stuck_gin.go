@@ -35,6 +35,7 @@ func SetupGinRouter() {
 
 	// r.Use(gin.Logger())
 
+	r.Use(middleware.CORSMiddleware())
 	r.Use(middleware.AccessTokenMiddleware())
 
 	r.GET("/spot/:unid", func(c *gin.Context) {

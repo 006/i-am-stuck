@@ -92,6 +92,12 @@ Detailed build and deploy instructions are included in the *README.md* files wit
 For demonstration purposes, let's use the [stuck-mixed-service.yaml](stuck-mixed-service.yaml) file to create a single Kubernetes Service that distributes traffic across three API implementations, each written in a different language. This setup is intentionally designed as an anti-pattern. In real-world scenarios, it's strongly recommended to avoid duplicating APIs in multiple languages. Instead, select the most suitable language for your needs and maintain a single, consistent implementation.
 ![k8s](./assets/k8s_mixed_service.png)
 
+### [Slouching towards .env](./slouching-towards-env.md)
+
+The initial working iteration of these APIs and web pages contained embedded configurations, including sensitive information such as database passwords, secret keys, and tokens. Therefore, the immediate priority became decoupling environment-specific configurations from the container images. While the backend APIs were successfully configured using mounted volumes or environment variables, the frontend Next.js application presented a more complex challenge.
+
+Specifically, two key aspects needed to be addressed: securely providing the Google Maps API key to the client-side application and ensuring the Auth0 middleware (which forced to **Edge** not **Nodejs**) had sufficient data to handle the authentication and authorization processes.
+
 ## Prerequisites
 
 For information on setting up the infrastructure components (OS, RDBMS, Kubernetes, Redis), please refer to my other repository: [All On Premises](https://github.com/006/all-on-premises).

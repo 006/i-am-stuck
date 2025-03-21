@@ -23,6 +23,16 @@ spec:
           ports:
             - containerPort: 3000
               protocol: TCP
+          envFrom:
+            - secretRef:
+                name: stuck-env
+          volumeMounts:
+            - name: secret-volume
+              mountPath: "/secret"
+      volumes:
+        - name: secret-volume
+          secret:
+            secretName: stuck-env
 
 ---
 apiVersion: v1
@@ -61,4 +71,3 @@ spec:
                 name: http
                 port:
                   number: 80
-

@@ -39,6 +39,18 @@ docker run -p 3000:3000 registry.tsst.xyz:5000/onme/stuck-nextjs:0.1.0
 kubectl create -f ./k8s/stuck-nextjs.yaml
 ```
 
+## Deploy to Kubernetes
+
+```bash
+kubectl create -n onme secret generic stuck-env --from-file=.env
+
+kubectl exec -it stuck-nextjs-64c6f87898-ngl8d --ls /app/public
+
+kubectl exec -n onme -it stuck-nextjs-64c6f87898-ngl8d -- more /app/public/__ENV.js
+
+
+```
+
 ### Explose by Ingress
 
 ![k8s](../assets/k8s_ingress.png)

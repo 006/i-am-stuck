@@ -10,7 +10,7 @@ func TestConnectMySQL(t *testing.T) {
 	err := godotenv.Load("../../.env") // load .env file from parent directory.
 	if err != nil {
 		t.Logf("Error loading .env file")
-		t.Skip("No .env found.")
+		t.Skip("No .env found. Skip test")
 	}
 
 	// ConnectDB()

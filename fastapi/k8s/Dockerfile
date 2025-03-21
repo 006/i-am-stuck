@@ -21,7 +21,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy your application files (if any additional files are needed)
 # COPY . /app
-COPY stuck.properties /app/
+# COPY stuck.properties /app/
 
 # Debugging steps:
 # RUN ls -l /app  # List files in /app

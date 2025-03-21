@@ -5,8 +5,10 @@
  */
 package io.onme.stuck;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.EnumSet;
 import java.util.Properties;
@@ -33,7 +35,7 @@ import redis.clients.jedis.JedisPoolConfig;
 import redis.clients.jedis.Protocol;
 
 /**
- * @Ttron Jan 13, 2025 
+ * @Ttron Jan 13, 2025
  */
 public class StuckLauncher
 {
@@ -44,6 +46,8 @@ public class StuckLauncher
 	public static final String KEY_BUNDLE_REDIS = "osgi-bundle-redis";
 
 	public static final String KEY_WS_APPLICATION = "jakarta.ws.rs.Application";
+
+	private static boolean K8S = true;
 
 	final static Logger LOG = LogManager.getLogger( StuckLauncher.class );
 
@@ -89,23 +93,74 @@ public class StuckLauncher
 	private static Properties loadConfiguration()
 	{
 		Properties props = new Properties();
-		File file = new File( "stuck.properties" );
-		try
+		if (K8S)
 		{
-			props.load( new FileInputStream( file ) );
+			File file = new File( "/config/stuck.properties" );
+			try
+			{
+				props.load( new FileInputStream( file ) );
+			}
+			catch (IOException e)
+			{
+				LOG.error( "Error while read stuck.properties", e );
+			}
+
+			try (BufferedReader reader = new BufferedReader( new FileReader( new File( "/secret/db_stuck_passwd" ) ) ))
+			{
+				props.setProperty( "db_stuck_passwd", reader.readLine() );
+			}
+			catch (IOException e)
+			{
+				LOG.error( "db_stuck_passwd not exist.", e );
+			}
+
+			try (BufferedReader reader = new BufferedReader( new FileReader( new File( "/secret/redis_passwd" ) ) ))
+			{
+				props.setProperty( "redis_passwd", reader.readLine() );
+			}
+			catch (IOException e)
+			{
+				LOG.error( "redis_passwd not exist.", e );
+			}
+
+			try (BufferedReader reader = new BufferedReader( new FileReader( new File( "/secret/TALKJS_APP_ID" ) ) ))
+			{
+				props.setProperty( "TALKJS_APP_ID", reader.readLine() );
+			}
+			catch (IOException e)
+			{
+				LOG.error( "TALKJS_APP_ID not exist.", e );
+			}
+
+			try (BufferedReader reader = new BufferedReader( new FileReader( new File( "/secret/TALKJS_APP_SECRET" ) ) ))
+			{
+				props.setProperty( "TALKJS_APP_SECRET", reader.readLine() );
+			}
+			catch (IOException e)
+			{
+				LOG.error( "TALKJS_APP_SECRET not exist.", e );
+			}
 		}
-		catch (IOException e)
+		else
 		{
-			LOG.error( "Error while read stuck.properties", e );
+			File file = new File( "stuck.properties" );
+			try
+			{
+				props.load( new FileInputStream( file ) );
+			}
+			catch (IOException e)
+			{
+				LOG.error( "Error while read stuck.properties", e );
+			}
 		}
 
 		DataSource dataSource = new DataSource();
 		PoolProperties p = new PoolProperties();
 		p.setDriverClassName( "org.mariadb.jdbc.Driver" );
-		p.setUrl( "jdbc:mariadb://" + props.getProperty( "db.nobites.host", "" ) + ":"
-				+ props.getProperty( "db.nobites.port", "3306" ) + "/" + props.getProperty( "db.nobites", "test" ) );
-		p.setUsername( props.getProperty( "db.nobites.user", "ttron" ) );
-		p.setPassword( props.getProperty( "db.nobites.passwd", "" ) );
+		p.setUrl( "jdbc:mariadb://" + props.getProperty( "db_stuck_host", "" ) + ":"
+				+ props.getProperty( "db_stuck_port", "3306" ) + "/" + props.getProperty( "db_stuck", "test" ) );
+		p.setUsername( props.getProperty( "db_stuck_user", "ttron" ) );
+		p.setPassword( props.getProperty( "db_stuck_passwd", "" ) );
 		// p.setJmxEnabled( false );
 		p.setTestWhileIdle( false );
 		p.setTestOnBorrow( true );
@@ -133,9 +188,9 @@ public class StuckLauncher
 
 		JedisPoolConfig config = new JedisPoolConfig();
 		config.setMaxTotal( 15 );
-		JedisPool redisPool = new JedisPool( config, props.getProperty( "redis.host", "redis.cube" ),
-				Integer.parseInt( props.getProperty( "redis.port", "6379" ) ), Protocol.DEFAULT_TIMEOUT,
-				props.getProperty( "redis.passwd", "passwd" ), 1 );// use db 1
+		JedisPool redisPool = new JedisPool( config, props.getProperty( "redis_host", "localhost" ),
+				Integer.parseInt( props.getProperty( "redis_port", "6379" ) ), Protocol.DEFAULT_TIMEOUT,
+				props.getProperty( "redis_passwd", "passwd" ), 1 );// use db 1
 		LocalCache.REDIS_POOL = redisPool;
 
 		LocalCache.AUTH0_DOMAIN = props.getProperty( "AUTH0_DOMAIN", "a.b.c" );
@@ -157,10 +212,12 @@ public class StuckLauncher
 		context.setContextPath( "/" );
 		ServletHolder servletHolder = context.addServlet( ServletContainer.class, "/*" );
 		// servletHolder.setInitParameter( ServerProperties.TRACING, "ALL" );
-		// servletHolder.setInitParameter( ServerProperties.TRACING_THRESHOLD, "TRACE" );
+		// servletHolder.setInitParameter( ServerProperties.TRACING_THRESHOLD, "TRACE"
+		// );
 		servletHolder.setInitParameter( KEY_WS_APPLICATION, RestfulApplication.class.getName() );
 
-		// jerseyHandler.getServletContext().setAttribute( KEY_BUNDLE_CONTEXT, context );
+		// jerseyHandler.getServletContext().setAttribute( KEY_BUNDLE_CONTEXT, context
+		// );
 		context.getServletContext().setAttribute( KEY_BUNDLE_DATASOURCE, LocalCache.DATASOURCE );
 		context.getServletContext().setAttribute( KEY_BUNDLE_REDIS, LocalCache.REDIS_POOL );
 

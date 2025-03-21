@@ -34,6 +34,7 @@ yarn-error.log*
 .env
 .env.local
 /Dockerfile
+secret
 
 # vercel
 .vercel
@@ -43,5 +44,4 @@ yarn-error.log*
 next-env.d.ts
 
 # env
-public/__ENV.js
 /Dockerfile

@@ -4,4 +4,6 @@ dist
 __pycache__
 stuck.properties
 *.egg-info
+.env*
+config
 /Dockerfile

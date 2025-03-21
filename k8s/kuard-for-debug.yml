@@ -1,0 +1,51 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kuard-stuck
+  namespace: onme
+spec:
+  containers:
+    - name: test-container
+      image: gcr.io/kuar-demo/kuard-amd64:blue
+      imagePullPolicy: Always
+      command:
+        - "/kuard"
+        - "$(APP_NAME)"
+      envFrom:
+        - secretRef:
+            name: stuck-env
+      env:
+        - name: APP_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: stuck
+              key: app-name
+        - name: AUTHOR
+          valueFrom:
+            configMapKeyRef:
+              name: stuck
+              key: author
+        - name: AUTH0_CLIENT_ID
+          valueFrom:
+            secretKeyRef:
+              name: stuck
+              key: AUTH0_CLIENT_ID
+        - name: db_stuck_passwd
+          valueFrom:
+            secretKeyRef:
+              name: stuck
+              key: db_stuck_passwd
+      volumeMounts:
+        - name: config-volume
+          mountPath: "/config"
+        - name: secret-volume
+          mountPath: "/secret"
+  volumes:
+    - name: config-volume
+      configMap:
+        name: stuck
+    - name: secret-volume
+      secret:
+        # secretName: stuck
+        secretName: stuck-env
+  restartPolicy: Never

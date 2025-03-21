@@ -2,7 +2,8 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings, case_sensitive=True):
-    model_config = SettingsConfigDict(env_file='../stuck.properties', env_file_encoding='utf-8', extra='ignore')
+    model_config = SettingsConfigDict(env_file_encoding='utf-8', extra='ignore',
+                                      env_file=('../config/.env', '../config/stuck.properties'))
     db_stuck: str
     db_stuck_host: str
     db_stuck_port: int
@@ -19,6 +20,8 @@ def get_settings():
 
 if __name__ == '__main__':
     settings = get_settings()
+    print(settings.db_stuck_host)
+    print(settings.db_stuck_passwd)
     print(settings.AUTH0_DOMAIN)
     print(settings.AUTH0_CLIENT_SECRET)
     print(settings.db_stuck_passwd)

@@ -1,8 +1,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: onme
   name: stuck-jetty-jersey
+  namespace: onme
   labels:
     app: stuck-jersey
 spec:
@@ -23,7 +23,18 @@ spec:
           ports:
             - containerPort: 8000
               protocol: TCP
-
+          volumeMounts:
+            - name: config-volume
+              mountPath: "/config"
+            - name: secret-volume
+              mountPath: "/secret"
+      volumes:
+        - name: config-volume
+          configMap:
+            name: stuck
+        - name: secret-volume
+          secret:
+            secretName: stuck
 ---
 apiVersion: v1
 kind: Service

@@ -26,6 +26,7 @@ class Spot(SQLModel, table=True):
     unid: str | None = Field(default=None, primary_key=True)
     lon: float | None
     lat: float | None
+    maker: str | None
     geo_hash: str | None
     open_id_stucker: str | None
     open_id_saver: str | None
@@ -85,9 +86,9 @@ auth = VerifyToken()
 
 origins = [
     "https://192.168.6.*",
-    "http://localhost:3000",
+    "http://localhost",
     "http://127.0.0.1",
-    "http://localhost:8000",
+    "http://stuck.tsst.xyz",
 ]
 
 app.add_middleware(
@@ -144,6 +145,7 @@ def create_stuck(openid: Annotated[str, Form()], lon: Annotated[float, Form()], 
     spot.color_vehicle = vehicle_color
     spot.cellphone = phone
     spot.content = description
+    spot.maker = 'fastapi'
 
     session.add(spot)
     session.commit()

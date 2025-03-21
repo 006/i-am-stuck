@@ -23,7 +23,31 @@ spec:
           ports:
             - containerPort: 8000
               protocol: TCP
-
+          env:
+            - name: author
+              valueFrom:
+                configMapKeyRef:
+                  name: stuck
+                  key: author
+            - name: db_stuck_passwd
+              valueFrom:
+                secretKeyRef:
+                  name: stuck
+                  key: db_stuck_passwd
+          volumeMounts:
+            - name: config-volume
+              mountPath: "/config"
+              readOnly: true
+            - name: secret-volume
+              mountPath: "/secret"
+              readOnly: true
+      volumes:
+        - name: config-volume
+          configMap:
+            name: stuck
+        - name: secret-volume
+          secret:
+            secretName: stuck
 ---
 apiVersion: v1
 kind: Service
